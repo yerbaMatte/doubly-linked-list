@@ -61,10 +61,25 @@ class DoublyLinkedList<T> {
       this.head!.prev = null;
       oldHead!.next = null;
     }
-
     this.length--;
     return oldHead;
   }
+
+  public unshift(val: T): DoublyLinkedList<T> {
+    const newNode = new _Node(val);
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head!.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+  public get(ind: number) {}
 }
 
 const newList = new DoublyLinkedList();
