@@ -35,35 +35,22 @@ class DoublyLinkedList<T> {
     return this;
   }
 
-  pop() {
-    if (this.length === 0) return undefined;
-    const lastNode = this.tail;
+  public pop() {
+    if (!this.head) return undefined;
+    const poppedNode = this.tail;
     if (this.length === 1) {
-      this.tail = null;
       this.head = null;
+      this.tail = null;
     } else {
-      this.tail = lastNode.prev;
-      this.tail.next = null;
+      this.tail = poppedNode!.prev;
+      this.tail!.next = null;
+      poppedNode!.prev = null;
     }
     this.length--;
-    return lastNode;
+    return poppedNode;
   }
+
+  public shift() {}
 }
 
 const newList = new DoublyLinkedList();
-
-function loggingIdentity<Type>(arg: Type[]): Type[] {
-  console.log(arg.length);
-  return arg;
-}
-
-let myArray: number[];
-let myArray2: Array<number>;
-
-type JobRun = {
-  job: any;
-  onComplete: (cb: (job: any) => void) => void;
-};
-
-let x: any = 'hello';
-let y: number = x.length;
