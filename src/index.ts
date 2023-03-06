@@ -123,6 +123,21 @@ class DoublyLinkedList<T> {
     this.length++;
     return true;
   }
+
+  public remove(ind: number) {
+    if (ind < 0 || ind >= this.length) return undefined;
+    if (ind === 0) return this.shift();
+    if (ind === this.length - 1) return this.pop();
+    let removedNode = this.get(ind);
+    let beforeNode = removedNode!.prev;
+    let afterNode = removedNode!.next;
+    beforeNode!.next = afterNode;
+    afterNode!.prev = beforeNode;
+    removedNode!.next = null;
+    removedNode!.prev = null;
+    this.length--;
+    return removedNode;
+  }
 }
 
 const newList = new DoublyLinkedList();
