@@ -94,6 +94,31 @@ class DoublyLinkedList {
         }
         return current;
     }
+    set(ind, val) {
+        let foundNode = this.get(ind);
+        if (foundNode != null) {
+            foundNode.val = val;
+            return true;
+        }
+        return false;
+    }
+    insert(ind, val) {
+        if (ind < 0 || ind >= this.length)
+            return null;
+        if (ind === 0)
+            return this.unshift(val);
+        if (ind === this.length)
+            return this.push(val);
+        let newNode = new _Node(val);
+        let beforeNode = this.get(ind - 1);
+        let afterNode = beforeNode.next;
+        beforeNode.next = newNode;
+        newNode.prev = beforeNode;
+        newNode.next = afterNode;
+        afterNode.prev = newNode;
+        this.length++;
+        return true;
+    }
 }
 const newList = new DoublyLinkedList();
 newList.push('Apple');
