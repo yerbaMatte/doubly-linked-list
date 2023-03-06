@@ -50,7 +50,21 @@ class DoublyLinkedList<T> {
     return poppedNode;
   }
 
-  public shift() {}
+  public shift() {
+    if (this.length === 0) return undefined;
+    const oldHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead!.next;
+      this.head!.prev = null;
+      oldHead!.next = null;
+    }
+
+    this.length--;
+    return oldHead;
+  }
 }
 
 const newList = new DoublyLinkedList();
