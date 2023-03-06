@@ -79,7 +79,30 @@ class DoublyLinkedList<T> {
     return this;
   }
 
-  public get(ind: number) {}
+  public get(ind: number): _Node<T> | null {
+    let current;
+    if (ind < 0 || ind >= this.length) return null;
+    if (ind <= this.length / 2) {
+      let counter: number = 0;
+      current = this.head;
+      while (counter !== ind) {
+        current = current!.next;
+        counter++;
+      }
+    } else {
+      let counter: number = this.length - 1;
+      current = this.tail;
+      while (counter !== ind) {
+        current = current!.prev;
+        counter--;
+      }
+    }
+    return current;
+  }
 }
 
 const newList = new DoublyLinkedList();
+
+newList.push('Apple');
+newList.push('Mango');
+newList.push('Banana');
